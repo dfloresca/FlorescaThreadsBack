@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); // odm - object document mapper
 
 // creat our dress schema
 const dressSchema = new mongoose.Schema({
-    unserName: String,
+    userName: String,
     bust: Number,
     waist: Number,
     hip: Number,

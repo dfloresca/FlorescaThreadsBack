@@ -3,9 +3,10 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 // import our database
 const {
-    Game,
-    Video,
-    User
+    Shirt,
+    Dress, 
+    Transaction,
+    Product
 } = require('./models'); // automatically looks for the index.js file by default
 
 

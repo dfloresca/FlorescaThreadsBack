@@ -16,10 +16,10 @@ app.get('/', (req, res) => {
     return res.json({ message: 'Welcome to my Facebook App' });
 });
 
-app.use('/games', require('./controllers/games'));
-app.use('/videos', require('./controllers/videos'));;
-app.use('/users', require('./controllers/users'));
-app.use('/items', require('./controllers/items'))
+app.use('/shirts', require('./controllers/shirts'));
+app.use('/dresses', require('./controllers/dresses'));;
+app.use('/transactions', require('./controllers/transactions'));
+app.use('/products', require('./controllers/products'))
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
