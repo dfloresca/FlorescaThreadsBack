@@ -1,6 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 // import all models
+const User = require('./user');
+const Message = require('./message')
+const Post = require('./post')
+const Comment = require('./comment')
+
 const Shirt = require('./shirt');
 const Dress = require('./dress');
 const Product = require('./product');
@@ -32,4 +37,10 @@ module.exports = {
     Dress,
     Product,
     Transaction
+    User, 
+    Comment, 
+    Post, 
+    Message
+    
+    
 }

@@ -1,4 +1,4 @@
-const faker = require('@faker-js/faker');
+// 
 const express = require('express');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
@@ -15,6 +15,14 @@ app.use(cors());
 app.get('/', (req, res) => {
     return res.json({ message: 'Welcome to my Facebook App' });
 });
+
+
+app.use('/users', require('./controllers/users'));
+app.use('/messages', require('./controllers/messages'));
+app.use('/posts', require('./controllers/posts'))
+app.use('/comments', require('./controllers/comments'))
+
+
 
 app.use('/shirts', require('./controllers/shirts'));
 app.use('/dresses', require('./controllers/dresses'));;
