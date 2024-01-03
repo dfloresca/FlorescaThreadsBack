@@ -32,6 +32,9 @@ router.get('/', (req, res) => {
 router.get('/search', (req, res) => {
     // Construct a query object based on req.query
     let queryObject = {};
+    if (req.query.userName) {
+        queryObject.userName = req.query.userName;
+    }
     if (req.query.firstName) {
         queryObject.firstName = req.query.firstName;
     }
@@ -41,16 +44,13 @@ router.get('/search', (req, res) => {
     if (req.query.email) {
         queryObject.email = req.query.email;
     }
-    if (req.query.twitterUsername) {
-        queryObject.twitterUsername = req.query.twitterUsername;
+    if (req.query.paymentMethod) {
+        queryObject.paymentMethod = req.query.paymentMethod;
     }
-    if (req.query.instagramUsername) {
-        queryObject.instagramUsername = req.query.instagramUsername;
+    if (req.query.password) {
+        queryObject.password = req.query.password;
     }
-    if (req.query.githubUsername) {
-        queryObject.githubUsername = req.query.githubUsername;
-    }
-
+    
     // Use the query object in the MongoDB query with findOne
     User.findOne(queryObject)
         .then(user => {
@@ -85,23 +85,13 @@ router.get('/:id', (req, res) => {
 //-------------------------------------
 router.post('/new', (req, res) => {
     User.create({
+        userName: req.body.userName,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
-        twitterUsername: req.body.twitterUsername,
-        instagramUsername: req.body.instagramUsername,
-        githubUsername: req.body.githubUsername,
         email: req.body.email,
-        gender: req.body.gender,
-        birthday: req.body.birthday,
-        relationshipStatus: req.body.relationshipStatus,
-        city: req.body.city,
-        state: req.body.state,
-        college: req.body.college,
-        highSchool: req.body.highSchool,
-        profileImg: req.body.profileImg,
-        bio: req.body.bio,
-        coverPhotoImg: req.body.coverPhotoImg
+        paymentMethod: req.body.paymentMethod,
+        password: req.body.password,
+        
     })
         .then(result => {
             User.findById(result._id)

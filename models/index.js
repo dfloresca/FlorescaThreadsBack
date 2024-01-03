@@ -1,10 +1,11 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 // import all models
-const Game = require('./game');
-const Video = require('./video');
 const User = require('./user');
-const Item = require('./item')
+const Message = require('./message')
+const Post = require('./post')
+const Comment = require('./comment')
+
 
 console.log('mongo uri =>', process.env.MONGO_URI);
 
@@ -27,9 +28,7 @@ db.on('error', (err) => {
     console.log(`Database error: `, err);
 });
 
-module.exports = {
-    Game, 
-    Video,
-    User,
-    Item
+module.exports = { User, Comment, Post, Message
+    
+    
 }
