@@ -36,7 +36,7 @@ module.exports = {
     Shirt, 
     Dress,
     Product,
-    Transaction
+    Transaction,
     User, 
     Comment, 
     Post, 
