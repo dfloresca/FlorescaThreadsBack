@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const transporter = require('./config')
 const dotenv = require('dotenv');
 require('./config/passport')(passport);
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const methodOverride = require('method-override');
 const buildPath = path.join(__dirname, '..', 'build');
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
     return res.json({ message: 'Welcome to Floresca Threads' });
 });
 
+//nodeMailer
 app.post('/send', (req, res) => {
     try {
         console.log(req.body)
@@ -44,9 +46,9 @@ app.post('/send', (req, res) => {
             `
         }
         console.log(`mailOptions ${mailOptions}`)
-        transporter.sendMail(mailOptions, function(err, info) {
+        transporter.sendMail(mailOptions, function (err, info) {
             console.log('inside the send process')
-            if(err) {
+            if (err) {
                 console.error(`there was an error==> ${err}`)
                 res.status(500).send({
                     success: false,
@@ -69,6 +71,38 @@ app.post('/send', (req, res) => {
     }
 })
 
+//==========================================
+// payment
+//==========================================
+const YOUR_DOMAIN = 'http://localhost:3000';
+
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        ui_mode: 'embedded',
+        line_items: [
+            {
+                // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                price: '{{PRICE_ID}}',
+                quantity: 1,
+            },
+        ],
+        mode: 'payment',
+        return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
+    });
+
+    res.send({ clientSecret: session.client_secret });
+});
+
+app.get('/session-status', async (req, res) => {
+    const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
+
+    res.send({
+        status: session.status,
+        customer_email: session.customer_details.email
+    });
+});
+
+app.use('/checkout_sessions', require('./controllers/checkout_sessions'))
 app.use('/users', require('./controllers/users'));
 app.use('/transactions', require('./controllers/transactions'));
 app.use('/products', require('./controllers/products'))
