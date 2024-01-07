@@ -1,7 +1,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 // import all models
-const User = require('./user');
+// const User = require('./user');
 const Message = require('./message')
 const Post = require('./post')
 const Comment = require('./comment')
@@ -37,10 +37,10 @@ module.exports = {
     Dress,
     Product,
     Transaction
-    User, 
-    Comment, 
-    Post, 
-    Message
+    // User, 
+    // Comment, 
+    // Post, 
+    // Message
     
     
 }
