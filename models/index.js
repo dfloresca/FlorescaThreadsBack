@@ -26,8 +26,7 @@ db.on('error', (err) => {
     console.log(`Database error: `, err);
 });
 
-module.exports = {
-    
+module.exports = {    
     Product,
     Transaction,
     User    

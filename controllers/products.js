@@ -65,39 +65,36 @@ router.get('/search', (req, res) => {
 //-------------------------------------
 // GET /products/:id - return one product by ObjectId
 //-------------------------------------
-router.get('/:id', (req, res) => {
-    Product.findById(req.params.id)
-        .then(product => {
-            console.log('--- products search by ObjectId--- \n', product)
-            return res.json(product)
-        })
-        .catch(error => {
-            console.log('---- read by id error ---\n', error)
-            return res.status(404).json({ message: "No product with this ID" })
-        })
-})
+router.get('/:id', async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        console.log('--- products search by ObjectId--- \n', product);
+        return res.json(product);
+    } catch (error) {
+        console.log('---- read by id error ---\n', error);
+        return res.status(404).json({ message: "No product with this ID" });
+    }
+});
 
 //-------------------------------------
 // POST /products/new - create new product and return new product // abby
 //-------------------------------------
-router.post('/new', (req, res) => {
-    Product.create({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        image: req.body.image,
-        category: req.body.category
-    })
-        .then(result => {
-            Product.findById(result._id)
-                .then(product => {
-                    return res.json(product)
-                })
-                .catch(error => {
-                    return res.status(404).json({ message: 'error making product' })
-                })
-        })
-})
+router.post('/new', async (req, res) => {
+    try {
+        const result = await Product.create({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            image: req.body.image,
+            category: req.body.category
+        });
+
+        const product = await Product.findById(result._id);
+        return res.json(product);
+    } catch (error) {
+        return res.status(404).json({ message: 'error making product' });
+    }
+});
 
 //-------------------------------------
 // PUT /products/:id - update product by using objectId // douglas
