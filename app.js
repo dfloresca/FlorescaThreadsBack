@@ -70,11 +70,6 @@ app.post('/send', (req, res) => {
 })
 
 app.use('/users', require('./controllers/users'));
-app.use('/messages', require('./controllers/messages'));
-app.use('/posts', require('./controllers/posts'))
-app.use('/comments', require('./controllers/comments'))
-app.use('/shirts', require('./controllers/shirts'));
-app.use('/dresses', require('./controllers/dresses'));;
 app.use('/transactions', require('./controllers/transactions'));
 app.use('/products', require('./controllers/products'))
 
