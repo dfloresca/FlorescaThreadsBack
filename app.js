@@ -45,7 +45,9 @@ app.post('/send', (req, res) => {
         }
         console.log(`mailOptions ${mailOptions}`)
         transporter.sendMail(mailOptions, function(err, info) {
+            console.log('inside the send process')
             if(err) {
+                console.error(`there was an error==> ${err}`)
                 res.status(500).send({
                     success: false,
                     message: 'Something went wrong. Try again later'
@@ -59,6 +61,7 @@ app.post('/send', (req, res) => {
             }
         });
     } catch (error) {
+        console.log(`there is an error => ${error}`);
         res.status(500).send({
             success: false,
             message: 'Something went wrong. Try again later'
