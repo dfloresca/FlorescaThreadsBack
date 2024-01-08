@@ -6,10 +6,7 @@ const userSchema = new mongoose.Schema ({
     firstName: String,
     lastName: String, 
     email: String,
-    password: String,
-    token: String,
-    exp: Number,
-    iat: Number
+    password: String
 }, {timestamps: true })
 
 // create the model

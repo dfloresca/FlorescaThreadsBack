@@ -15,6 +15,23 @@ router.get('/test', (req, res) => {
     res.json({ message: 'User endpoint OK! ✅' });
 });
 
+//------------------------------
+//GET /:id - return one user
+//-------------------------------
+router.get('/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        if (!user) {
+            return res.status(404);
+            console.log('User not found');
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.log('Error finding user', error);
+        res.status(500).json({ error: 'Internal Server Error' })
+    }
+});
+
 
 router.get("/email/:email", passport.authenticate("jwt", { session: false }),
     (req, res) => {
