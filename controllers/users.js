@@ -133,14 +133,17 @@ router.post('/login', async (req, res) => {
 
 // PUT Route
 router.put('/:id', (req, res) => {
+    console.log(`incoming id => ${req.params.id}`)
     const id = req.params.id;
     const updatedUserData = req.body;
+    console.log(`incoming changes => ${req.body}`)
 
-    User.findByIdAndUpdate(id, updatedUserData, { new: true })
-        .then(updatedUser => {
+    User.findByIdAndUpdate(id, updatedUserData, { new: true })  
+    .then(updatedUser => {
             if (!updatedUser) {
                 return res.status(404).json({ error: 'User not found' });
             }
+            console.log(`updated user ${updatedUser}`)
             res.json(updatedUser);
         })
         .catch(error => {
