@@ -22,8 +22,8 @@ router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
         if (!user) {
-            return res.status(404);
             console.log('User not found');
+            return res.status(404);
         }
         res.status(200).json(user);
     } catch (error) {
