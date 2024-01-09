@@ -132,7 +132,7 @@ router.post('/login', async (req, res) => {
 });
 
 // PUT Route
-router.put('/:id', (req, res) => {
+router.put('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     console.log(`incoming id => ${req.params.id}`)
     const id = req.params.id;
     const updatedUserData = req.body;
