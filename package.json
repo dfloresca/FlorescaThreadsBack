@@ -1,7 +1,7 @@
 {
-  "name": "mongoose-app",
+  "name": "florescathreadsback",
   "version": "1.0.0",
-  "description": "Create Express API using Mongoose and more ...",
+  "description": "Floresca Threads - Backend",
   "main": "app.js",
   "scripts": {
     "test": "mocha",

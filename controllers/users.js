@@ -11,9 +11,6 @@ JWT_SECRET = process.env.JWT_SECRET
 const User = require('../models/user');
 
 // Controllers
-router.get('/test', (req, res) => {
-    res.json({ message: 'User endpoint OK! ✅' });
-});
 
 //------------------------------
 //GET /:id - return one user
