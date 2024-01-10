@@ -163,5 +163,10 @@ module.exports = transporter
 ```
 </details>
 
+## Team
+The Floresca Threads storefront was built by:  
+- [Daniel Floresca](https://github.com/dfloresca)  
+- [Susan Stephens](https://github.com/Nimsey)  
+- [Darren Gardner](https://github.com/DGWonKanobi)
 
 
